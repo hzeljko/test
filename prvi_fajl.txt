@@ -436,7 +436,7 @@ Dr. Pawel Suwinski
 	\end{tikzpicture}%}%
 }
 
-\def\orangeBullet{%
+\def\orangeBullet{%kkk
 \begin{tikzpicture}%
 	\fill[orange] (0,0) circle (2mm);%
 	\end{tikzpicture}%}%
