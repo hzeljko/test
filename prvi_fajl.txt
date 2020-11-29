@@ -1,0 +1,474 @@
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[charter]{mathdesign}
+\let\circledS\undefined
+\let\mathcal\undefined
+\let\mathbb\undefined
+
+\usepackage[a4paper,top=30mm,bottom=25mm,
+left=20mm,right=20mm,marginparwidth=1.75cm]{geometry}
+
+\usepackage{amsmath,amssymb,amstext}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{array}
+\newcommand{\nrc}[2][t]{\renewcommand{\arraystretch}{1.3}%
+  \begin{tabular}[#1]{@{}>{\baselineskip=0.5\baselineskip}c@{}}#2\end{tabular}}
+  \newcommand{\nrd}[2][r]{%
+  \begin{tabular}[#1]{@{}r@{}}#2\end{tabular}}
+\newcommand{\nrl}[2][l]{%
+  \begin{tabular}[#1]{@{}l@{}}#2\end{tabular}}
+\usepackage[all]{nowidow}
+\usepackage[table]{xcolor}
+\usepackage{calc}
+\def\mylength{\textwidth-2\tabcolsep-1.25\arrayrulewidth}
+\def\mylengthh{\textwidth-1\tabcolsep-2.25\arrayrulewidth}
+\usepackage[most]{tcolorbox}
+\usepackage{graphicx}
+%\usepackage{epsfig}
+\usepackage[update]{epstopdf}
+\epstopdfsetup{suffix=\SourceExt}
+\graphicspath{{./figures/}{./figures/icons/}}
+\usepackage{xurl}
+\usepackage{tikzpagenodes}
+\usepackage{tikz}
+\usepackage{enumitem}
+\setlist[enumerate]{nosep,label=(\arabic*),itemsep=4pt,labelindent=!, leftmargin=*, before={\vspace{0\baselineskip}},align=left,after={\vspace{0.5\baselineskip}}}
+\setlist[itemize,1]{nosep,itemsep=4pt,labelindent=!, leftmargin=*,before={\vspace{0\baselineskip}},after={\vspace{0.5\baselineskip}}}
+
+\newlist{fitemize}{itemize}{1}
+\setlist[fitemize,1]{nosep,itemsep=7pt,%labelindent=10mm,
+label={},labelsep=5mm,
+labelwidth=20mm,align=right,
+leftmargin=30mm,before={\vspace{0\baselineskip}},after={\vspace{0.5\baselineskip}}}
+
+\newlist{titemize}{itemize}{1}
+\setlist[titemize]{nosep,itemsep=4pt,labelindent=!, leftmargin=*,
+label={$\bullet$},
+before={\vspace{-1.0\baselineskip}},after={\vspace{0.5\baselineskip}}}
+
+%{leftmargin=3.7em, labelindent=0em, labelwidth=2.5em,
+%labelsep=0.1em,listparindent=0pt,align=left}
+
+\usetikzlibrary{positioning,calc}
+
+\usepackage[export]{adjustbox}
+
+\usepackage[explicit]{titlesec}
+\setcounter{secnumdepth}{1}
+\setcounter{tocdepth}{1}
+%\newcommand{\sectionbreak}{\clearpage}
+
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+%%
+\definecolor{dorange}{rgb}{0.96,0.58,0.27}
+\definecolor{lorange}{rgb}{0.99,0.91,0.85}
+\definecolor{textorange}{rgb}{0.38,0.14,0.13}
+%
+\definecolor{dblue}{cmyk}{0.86,0.64,0.20,0.04}
+\definecolor{lblue}{cmyk}{0.13,0.05,0.02,0}
+\definecolor{textblue}{cmyk}{0.96,0.78,0.25,0.1}
+%
+\definecolor{dgreen}{cmyk}{0.75,0,1,0}
+\definecolor{lgreen}{cmyk}{0.07,0.02,0.15,0}
+%
+\definecolor{dred}{cmyk}{0.02,0.95,0.78,0}
+\definecolor{lred}{cmyk}{0.03,0.15,0.08,0}
+\definecolor{textred}{cmyk}{0.37,0.86,0.77,0.51}
+
+
+\newcommand\partnumfont{% font specification for the number
+  \fontsize{220}{130}\color{myblueii}\selectfont%
+}
+\newcommand\partnamefont{% font specification for the name "PART"
+  \normalfont\color{white}\scshape\small\bfseries
+}
+
+% Color for chapter/section headings
+\definecolor{chapnamebg}{cmyk}{0.16,0.07,0.04,0}%
+\definecolor{chaptitlecolor}{cmyk}{0.98,0.74,0.49,0.37}
+\definecolor{chaptitlebg}{cmyk}{0.56,0.51,0.97,0.4}
+\definecolor{sectitlecolor}{cmyk}{0.78,0.47,0.22,0.02}
+\definecolor{sectioncolor}{cmyk}{0.9,0.7,0.22,0.02}
+
+%\setcounter{chapter}{1}
+% Chapter header formatting
+\titleformat{\chapter}{}{}{0pt}{\thispagestyle{firstpage}
+	\phantomsection
+	\tikz[overlay,remember picture]
+	\fill[chapnamebg]
+	([yshift=-2.75cm,xshift=1.75cm] current page.north west) rectangle
+	([yshift=-55mm,xshift=-1cm] current page.north east);
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii]%svetloplavi box
+    (current page.north west) rectangle ([yshift=-108mm]current page.north east);
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=4cm,
+      text depth=12cm,
+      anchor=center,
+      inner sep=0pt] at ([xshift=-5mm]current page.north east) (parttop)
+    {\thechapter};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south)
+    {\partnumfont\thechapter};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)
+  {\partnamefont };%PART
+  \node[%draw=black,
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.5cm]partname.east|-partnum.south)
+  {\parbox{.93\textwidth}{\fontsize{20pt}{26pt}\selectfont\sffamily\bfseries\raggedleft\MakeUppercase{#1}}};
+  \end{tikzpicture}%
+}
+
+\titlespacing{\chapter}{0pt}{0mm}{80mm}
+
+% Unnumbered chapters should show up in TOC, reset sections, and page headers
+\titleformat{name=\chapter,numberless}[display]{}{}{0pt}{
+	\phantomsection
+	\tikz[overlay,remember picture]
+	\fill[chapnamebg]
+	([yshift=-2.75cm,xshift=1.75cm]current page.north west) rectangle
+	([yshift=-55mm,xshift=-1cm] current page.north east);
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii]
+    (current page.north west) rectangle ([yshift=-108mm]current page.north east);
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=4cm,
+      text depth=12cm,
+      anchor=center,
+      inner sep=0pt] at ([xshift=-5mm]current page.north east) (parttop)
+    {\color{mybluei}\thechapter};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south)
+    {\partnumfont\color{mybluei}\thechapter};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)
+  {\partnamefont };%PART
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.5cm]partname.east|-partnum.south)
+  {\parbox{.7\textwidth}{\fontsize{25pt}{30pt}\selectfont\sffamily\bfseries\raggedleft#1}};
+  \end{tikzpicture}%
+}
+[
+	%\addcontentsline{toc}{chapter}{#1}
+	\setcounter{section}{0}
+	\markboth{#1}{}
+]
+
+%\titlespacing{name=\chapter,numberless}{0pt}{0mm}{10mm}
+%\@addtoreset{chapter}{part}
+\newcommand{\sectionbreak}{\clearpage}
+\titleformat{\section}
+  {\fontsize{15pt}{17pt}\selectfont\bfseries\sffamily\color{sectioncolor}}
+  {\thesection.}
+  {0.5em}
+  {\color{sectioncolor}#1}
+  []
+
+\titleformat{name=\section,numberless}
+  {\fontsize{15pt}{17pt}\selectfont\bfseries\sffamily\color{sectioncolor}}%
+  {}
+  {0em}
+  {\color{sectioncolor}#1}
+  []
+
+  \titlespacing*{\section}{0pt}{25pt plus 2pt minus 3pt}{8pt plus 2pt minus 2pt}
+
+\titleformat{\subsection}
+  {\color{black!80}\fontsize{13pt}{15.5pt}\selectfont\bfseries\sffamily\color{sectioncolor}}
+  {\thesubsection.}
+  {0.5em}
+  {\color{sectioncolor}#1}
+  []
+
+\titlespacing*{\subsection}{0pt}{15pt plus 2pt minus 3pt}{5pt plus 2pt minus 2pt}
+%
+
+\titleformat{\subsubsection}
+  {\fontsize{12pt}{14pt}\selectfont\sffamily\bfseries\color{sectioncolor}}
+  {\thesubsubsection.}
+  {0.5em}
+  {\color{sectioncolor}#1}
+  []
+
+\newcommand*{\arraycolor}[1]{\protect\leavevmode\color{#1}}
+
+\usepackage[titles]{tocloft}
+\renewcommand{\cftbeforesecskip}{1pt}
+%\setlength{\cftsecnumwidth}{3.0em}
+%\cftpagenumbersoff{part}
+\setlength{\cftbeforechapskip}{5pt}
+
+
+\usepackage{fancyhdr}
+\headsep=8mm
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+
+\fancypagestyle{pgx}{%
+  \fancyhf{}%
+%%
+\fancyhead[C]{
+\tikz[remember picture,overlay,baseline]{%
+\draw[line width=4pt,plava] (current page header area.south west) -- (current page header area.south east);
+\node[yshift=2mm]at ($(current page header area.north west)!0.5!(current page header area.north east)$){\includegraphics[scale=0.5]{mygenics-logo}};
+}
+}
+%%
+\fancyfoot[E,O]{%
+  \begin{tikzpicture}[remember picture,overlay]
+\draw [fill=plava,draw=plava]
+(current page footer area.south west) rectangle
+(current page footer area.north east);
+\node[white,font=\bfseries]at ($(current page footer area.south west)!0.5!(current page footer area.north east)$){\thepage};
+   \end{tikzpicture}}
+}
+
+\fancypagestyle{firstpage}{%
+  \fancyhf{}%
+%%
+\fancyfoot[E,O]{%
+  \begin{tikzpicture}[remember picture,overlay]
+\draw [fill=plava,draw=plava]
+(current page footer area.south west) rectangle
+(current page footer area.north east);
+\node[white,font=\bfseries]at ($(current page footer area.south west)!0.5!(current page footer area.north east)$){\thepage};
+   \end{tikzpicture}}
+}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+%%
+\fancyfoot[E,O]{%
+  \begin{tikzpicture}[remember picture,overlay]
+\draw [fill=plava,draw=plava]
+(current page footer area.south west) rectangle
+(current page footer area.north east);
+\node[white,font=\bfseries]at ($(current page footer area.south west)!0.5!(current page footer area.north east)$){\thepage};
+   \end{tikzpicture}}
+}
+
+
+\usepackage[colorlinks,allcolors=blue]{hyperref}
+%%%%%%%%%%%%%%%%
+\definecolor{doctor}{cmyk}{1,0.5,0,0}
+\definecolor{vvariable}{cmyk}{0,1,1,0}
+\newcommand{\variable}{\color{vvariable}}
+
+\definecolor{plava}{cmyk}{0.79,0.12,0.21,0}
+\definecolor{oker}{cmyk}{0,0.4,1,0}
+\definecolor{zelena}{cmyk}{0.84,0,1,0}
+\definecolor{yrule}{cmyk}{0,0.13,0.75,0}
+
+\definecolor{podloga}{cmyk}{0.15,0,0.18,0}
+\definecolor{theder}{cmyk}{0.4,0,0,0}
+\definecolor{tkolona}{cmyk}{0.2,0,0,0}
+\definecolor{skolona}{cmyk}{0.12,0,0,0}
+%%%%
+
+\definecolor{oorange}{RGB}{255,134,24}
+\definecolor{pink}{cmyk}{0.11,0.34,0.03,0}
+\definecolor{greenn}{cmyk}{0.77,0,1,0}
+\definecolor{greennl}{cmyk}{0.11,0,0.18,0}
+\definecolor{orangee}{cmyk}{0,0.51,1,0}
+\definecolor{orangeel}{cmyk}{0,0.03,0.29,0}
+\definecolor{redd}{cmyk}{0.18,0.96,1,0.09}
+\definecolor{reddl}{cmyk}{0,0.14,0.05,0}
+
+\def\DATEANALYSE{2020-03-25}
+\newcommand*\setDATEANALYSE[1]{%
+\def\DATEANALYSE{\textcolor{vvariable}{#1}}
+}
+
+\def\NAME{Enter name}
+\newcommand*\setNAME[1]{%
+\def\NAME{\textcolor{vvariable}{#1}}
+}
+
+\def\GENDER{MALE}
+\newcommand*\setGENDER[1]{%
+\def\GENDER{\textcolor{vvariable}{#1}}
+}
+
+\usepackage{stackengine}
+\usepackage{scalerel}
+
+\newcommand\dangersig[1][2ex]{%
+  \scaleto{\stackengine{0.3pt}{\scalebox{1.1}[.9]{%
+  \color{red}$\blacktriangle$}}{\tiny\bfseries !}{O}{c}{F}{F}{L}}{#1}%
+}
+
+\definecolor{titlecolor}{cmyk}{0.95,0.92,0,0}
+\definecolor{traka}{RGB}{2,201,186}
+\definecolor{dna}{RGB}{0,57,104}
+\definecolor{pha}{RGB}{128,130,133}
+%\usepackage[default,scale=0.95]{opensans}
+
+\newcommand{\ttitle}[3]{\thispagestyle{empty}
+\begin{tikzpicture}[remember picture,overlay]
+%%%
+%\node[inner sep=0,%opacity=0.6
+%] at (current page.center)
+%{\includegraphics[width=\paperwidth,height=\paperheight]{1}};
+%%
+\node[inner sep=0,shape=rectangle,fill={traka},anchor=north west,
+minimum width=\paperwidth, minimum height=6mm] at
+(current page.north west){};
+%%krug
+\node[inner sep=0,anchor=south west] at (current page.south west)
+{\includegraphics[scale=1]{krug}};
+%%slika right
+\node[inner sep=0,anchor=south east] at (current page.south east)
+{\includegraphics[scale=1]{title-figure2}};
+%logo
+\node[inner sep=0,anchor=north west] at ([xshift=22mm,yshift=-25mm]current page.north west)(logo)
+{\includegraphics[scale=1]{mygenics-logo}};
+%heart
+\node[inner sep=0,anchor=north east] at ([xshift=-10mm,yshift=-19mm]current page.north east)(heart)
+{\includegraphics[scale=0.9]{heart}};
+%heart
+\node[inner sep=0,below=of heart]
+%at ([xshift=-10mm,yshift=-19mm]current page.north east)(plate)
+{\includegraphics[scale=0.9]{plate}};
+%%%%%%
+\node[dna,inner sep=0pt,text width=135mm,anchor=west,%draw=black,
+font={\fontfamily{phv}\selectfont\fontsize{36pt}{36}\selectfont}] (TXT1) at ([xshift=2mm,yshift=-20mm]logo.south west){#1};
+%%%%%%
+\node[traka,inner sep=0pt,text width=135mm,anchor=west,%draw=black,
+font={\fontfamily{phv}\selectfont\fontsize{30pt}{30}\selectfont\bfseries}] (TXT2) at %\fontfamily{phv}\selectfont
+ ([xshift=0mm,yshift=-11mm]TXT1.south west){#2};
+%%%%%%
+\draw[line width=1pt,traka]([xshift=0mm,yshift=-11mm]TXT2.south west)--++(40mm,0);
+%
+\node[pha,inner sep=0pt,text width=155mm,anchor=west,%draw=black,
+font={\fontfamily{phv}\selectfont\fontsize{24pt}{24}\selectfont}] (TXT3) at ([xshift=0mm,yshift=-26mm]TXT2.south west){#3};
+%\fontfamily{phv}\selectfont
+
+
+
+%\fill[red](logo.south west)circle(2pt);
+
+
+\node[%below=15mm of text2,
+font={\fontsize{15pt}{15}\selectfont},anchor=north west,
+align=left](table1)
+at ([xshift=-3.0mm,yshift=-42mm]TXT3.south west)
+{\sffamily
+\renewcommand{\arraystretch}{1.6}
+\tabcolsep=1\tabcolsep
+\begin{tabular}{@{}>{\bfseries\color{dna}\raggedright}m{0.15\mylength}
+m{0.3\mylength}<{\raggedright}}
+Name:&\NAME\\
+D.O.B:& N/A \\
+Gender:& \GENDER \\
+MRN:&N/A \\
+\end{tabular}
+};
+
+\draw[line width=1pt,pha]([xshift=3mm,yshift=-6mm]table1.south west)--++(40mm,0);
+
+
+\node[%draw=black,
+%text width=65mm,
+font={\fontsize{14pt}{14}\selectfont},anchor=north west,
+align=left](table1)
+at ([xshift=-0.50mm,yshift=-15mm]table1.south west)
+{\sffamily%
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{@{}>{\color{pha}}m{0.4\mylength}<{\raggedright}}
+\textbf{Referring Physician:}
+\\
+Dr. Pawel Suwinski
+\\[6mm]
+\textbf{Referring Facility:}
+\\
+MYGENICS
+\\[6mm]
+\textbf{Analysis Performed by:}
+\\
+Dr. Pawel Suwinski
+\\[6mm]
+\textbf{Date:}
+\\
+\DATEANALYSE
+\end{tabular}
+};
+\end{tikzpicture}
+\arrayrulecolor{black}
+\clearpage
+}
+
+\usepackage{graphbox}
+\def\Darrows{\adjincludegraphics[valign=c,scale=1]{darrows}~}
+\def\Oarrows{\adjincludegraphics[valign=c,scale=1]{oarrows}~}
+
+
+\usepackage{etoolbox}
+\patchcmd{\thebibliography}{\chapter*}{\chapter}{}{}
+\addto{\captionsenglish}{\renewcommand{\bibname}{References}}
+
+\newcommand\Tstrut{\rule{0pt}{2.6ex}}         % = `top' strut
+\newcommand\Bstrut{\rule[-0.9ex]{0pt}{0pt}}
+
+
+\def\redBullet{%
+\begin{tikzpicture}%
+	\fill[red] (0,0) circle (2mm);%
+	\end{tikzpicture}%}%
+}
+
+\def\orangeBullet{%
+\begin{tikzpicture}%
+	\fill[orange] (0,0) circle (2mm);%
+	\end{tikzpicture}%}%
+}
+
+
+\def\greenBullet{%
+\begin{tikzpicture}%
+	\fill[green] (0,0) circle (2mm);%
+	\end{tikzpicture}%}%
+}
+
+
+
+\newcommand\redtable[1]{%
+\renewcommand{\arraystretch}{1.8}
+\tabcolsep=1.0\tabcolsep\small
+\begin{tabular}{>{\columncolor{lred}\raggedright\leavevmode\color{textred}}p{0.20\mylength}
+>{\parskip=6pt}p{0.81\mylength}@{}}
+%
+\rowcolor{dred}
+\multicolumn{2}{l}{\textcolor{white}{\MakeUppercase{\textbf{#1}}}}
+\\
+}
+
+
+\newcommand\orangetable[1]{%
+\renewcommand{\arraystretch}{1.8}
+\tabcolsep=1.0\tabcolsep\small
+\begin{tabular}{>{\columncolor{lorange}\raggedright\leavevmode\color{textorange}}p{0.20\mylength}
+>{\parskip=6pt}p{0.81\mylength}@{}}
+%
+\rowcolor{dorange}
+\multicolumn{2}{l}{\textcolor{white}{\MakeUppercase{\textbf{#1}}}}
+} 
